@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  frontend:
+    build: frontend/.
+    container_name: frontend
+    ports:
+      - 8080:8080
+    networks:
+      - fullcycle
+
+networks:
+  fullcycle:
