@@ -1,9 +1,6 @@
-FROM node:16-slim
+FROM nginx:1.21.6-alpine
 
-WORKDIR /usr/app
+WORKDIR /app
 
 COPY . .
-
-EXPOSE 8080
-
-CMD [ "npm", "start" ]
+# COPY ./nginx.conf /etc/nginx/nginx.conf
