@@ -11,29 +11,18 @@ services:
     networks:
       - fullcycle
 
-  api:
-    build: api/.
-    container_name: api
-    restart: always
-    ports:
-      - 3000:3000
-    networks:
-      - fullcycle
-    depends_on:
-      - mongo
-
-  frontend:
-    build: frontend/.
-    container_name: frontend
+  app:
+    build: app/.
+    container_name: app
     restart: always
     volumes:
-      - ./frontend/nginx.conf:/etc/nginx/nginx.conf
+      - ./app/nginx.conf:/etc/nginx/nginx.conf
+      - ./app/frontend:/var/www/html
     ports:
       - 8080:8080
     networks:
       - fullcycle
     depends_on:
-      - mongo
       - api
 
 networks:
