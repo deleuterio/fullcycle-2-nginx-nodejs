@@ -1,1 +1,0 @@
-console.log(Buffer.alloc(1));

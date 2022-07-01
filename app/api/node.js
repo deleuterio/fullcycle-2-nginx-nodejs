@@ -1,20 +1,26 @@
-const http = require('http');
+const http = require('http')
+const port = 3000
 
-const requestListener = function (req, res) {
-    if (req.url === '/people' && req.method === 'GET') {
-        res.end(['Welcome Home', 'Doug', 'Annie']);
+const requestHandler = (req, res) => {
+    if (req.url === '/api/people' && req.method === 'GET') {
+        res.writeHead(200, {'Content-Type': 'application/json'});
+        res.statusCode = 200;
+        res.end(JSON.stringify(['Welcome Home', 'Doug', 'Annie']));
     } else if (req.url === '/people' && req.method === 'POST') {
-        res.end('Doug');
+        // res.write('Doug');
+        res.end('ok');
     } else {
         res.statusCode = 404;
         res.end('404: Path not found');
     }
-};
+}
 
-const server = http.createServer(requestListener);
-const host = 'localhost';
-const port = 3000;
+const server = http.createServer(requestHandler)
 
-server.listen(port, host, () => {
-    console.log(`Server is running on http://${host}:${port}`);
-});
+server.listen(port, (err) => {
+  if (err) {
+    return console.log('something bad happened', err)
+  }
+
+  console.log(`server is listening on ${port}`)
+})
