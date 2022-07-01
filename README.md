@@ -1,7 +1,7 @@
 # fullcycle-2-nginx-nodejs
 App para cadastro de nomes
 
-# Descrição do desafio
+## Descrição do desafio
 Nesse desafio você colocará em prática o que aprendemos em relação a utilização do nginx como proxy reverso. A idéia principal é que quando um usuário acesse o nginx, o mesmo fará uma chamada em nossa aplicação node.js. Essa aplicação por sua vez adicionará um registro em nosso banco de dados mysql, cadastrando um nome na tabela people.
 
 O retorno da aplicação node.js para o nginx deverá ser:
@@ -13,3 +13,9 @@ O retorno da aplicação node.js para o nginx deverá ser:
 Gere o docker-compose de uma forma que basta apenas rodarmos: docker-compose up -d que tudo deverá estar funcionando e disponível na porta: 8080.
 
 Suba tudo em um repositório e faça a entrega.
+
+## Resultado
+
+1. Rode o projeto com `docker-compose up`.
+2. Teste no navegador em localhost:8080
+3. Se recarregar a tela os dados estão persistidos em um mongodb e serão reapresentados

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Desafio docker nodejs + nginx</title>
+</head>
+
+<body>
+    <h1>Full Cycle Rocks!</h1>
+    <form>
+        Nome: <input type="text" id="nome" /><input type="submit" value="Enviar" />
+    </form>
+    <ul id="lista">
+    </ul>
+</body>
+
+<script type="text/javascript">
+    const API_URL = 'http://localhost:8080/api/people';
+
+    //create XMLHttpRequest object
+    const xhr = new XMLHttpRequest()
+    //open a get request with the remote server URL
+    xhr.open("GET", API_URL)
+    //send the Http request
+    xhr.send()
+
+    //EVENT HANDLERS
+
+    //triggered when the response is completed
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            //parse JSON datax`x
+            data = JSON.parse(xhr.responseText)
+
+            const lista = document.getElementById("lista");
+            data.forEach(element => {
+                const listElement = document.createElement("li");
+                const textElement = document.createTextNode(element.name);
+                listElement.appendChild(textElement);
+                lista.appendChild(listElement);
+            });
+            console.log(data)
+        } else if (xhr.status === 404) {
+            console.log("No records found")
+        }
+    }
+
+
+    const form = document.querySelector("form");
+    form.addEventListener("submit", (event) => {
+        // submit event detected
+        event.preventDefault();
+
+        const nomeElement = document.getElementById("nome");
+        const nome = nomeElement.value;
+        const lista = document.getElementById("lista");
+
+        const listElement = document.createElement("li");
+        const textElement = document.createTextNode(nome);
+        listElement.appendChild(textElement);
+
+        lista.appendChild(listElement);
+
+
+        //create XMLHttpRequest object
+        const postxhr = new XMLHttpRequest()
+        //open a get request with the remote server URL
+        postxhr.open("POST", API_URL)
+        //send the Http request
+        postxhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        postxhr.send(JSON.stringify({ name: nome }));
+
+    });
+</script>
+
+</html>
