@@ -10,3 +10,4 @@
 8. Configure git to sign any commit or tag:
     - `git config --global commit.gpgsign true`
     - `git config --global tag.gpgsign true`
+9. Start the agent: `gpgconf --launch gpg-agent`
